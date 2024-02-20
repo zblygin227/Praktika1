@@ -1,0 +1,152 @@
+﻿<Window x:Class="Praktika1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Praktika1"
+        mc:Ignorable="d"
+        Title="Практос 3" Loaded="Window_Loaded" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Клинеты">
+                <Grid>
+                    <Menu Height="20" VerticalAlignment="Top">
+                        <MenuItem Header="Запись"  x:Name="Clients">
+                            <MenuItem Header="Добавить" Click="MenuItem_Click"></MenuItem>
+                            <MenuItem Header="Редактировать" Click="MenuItem_Click_1"></MenuItem>
+                            <MenuItem Header="Удалить" Click="MenuItem_Click_2"></MenuItem>
+                        </MenuItem>
+
+                    </Menu>
+                    <DataGrid x:Name="ContentDG" Margin="0,20,170,0" AutoGenerateColumns="False" MouseEnter="ContentDG_MouseEnter">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код" Binding="{Binding id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding FirstName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding MiddleName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Телефон" Binding="{Binding Phone}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Почта" Binding="{Binding Email}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Поиск" Margin="629,0,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="41*"/>
+                                <ColumnDefinition Width="102*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBox Margin="12,51,2,0"  VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="FamilyFinderTB" TextChanged="FamilyFinderTB_TextChanged" HorizontalAlignment="Left" Margin="12,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="PhoneFinderTB" TextChanged="TextBox_TextChanged_1" HorizontalAlignment="Left" Margin="13,128,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                            <TextBox x:Name="MailFinder" TextChanged="MailFinder_TextChanged" HorizontalAlignment="Left" Margin="12,209,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                            <Label Content="Введите Фамилию" HorizontalAlignment="Left" Margin="20,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                            <Label Content="Введите номер" HorizontalAlignment="Left" Margin="27,102,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                            <Label Content="Введите почту" HorizontalAlignment="Left" Margin="31,183,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+
+                        </Grid>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Агенты" FocusableChanged="TabItem_FocusableChanged">
+                <Grid>
+                    <Menu Height="20" VerticalAlignment="Top">
+                        <MenuItem Header="Запись" x:Name="Agents">
+                            <MenuItem Header="Добавить" Click="MenuItem_Click_3"></MenuItem>
+                            <MenuItem Header="Редактировать" Click="MenuItem_Click_4"></MenuItem>
+                            <MenuItem Header="Удалить" Click="MenuItem_Click_5"></MenuItem>
+                        </MenuItem>
+
+                    </Menu>
+                    <DataGrid x:Name="ContentDG1" Margin="0,20,170,0" AutoGenerateColumns="False" MouseEnter="ContentDG1_MouseEnter">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding FirstName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding MiddleName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding LastName}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Комиссия" Binding="{Binding DealShare}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <GroupBox Header="Поиск" Margin="629,20,10,0">
+                        <Grid>
+                            <TextBox x:Name="FamFinderTB" HorizontalAlignment="Center" Margin="0,53,0,0" TextWrapping="Wrap" TextChanged="TextBox_TextChanged"  VerticalAlignment="Top" Width="83"/>
+                            <Label Content="Введите Фамилию" HorizontalAlignment="Center" Margin="0,27,0,0" VerticalAlignment="Top" Width="123"/>
+
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Предложения">
+                <Grid>
+                    <Menu Height="20" VerticalAlignment="Top">
+                        <MenuItem Header="Запись" x:Name="Supplies">
+                            <MenuItem Header="Добавить" Click="MenuItem_Click_6" ></MenuItem>
+                            <MenuItem Header="Редактировать" Click="MenuItem_Click_7" ></MenuItem>
+                            <MenuItem Header="Удалить" Click="MenuItem_Click_8"></MenuItem>
+                        </MenuItem>
+                    </Menu>
+                    <DataGrid x:Name="SuppliesDG" AutoGenerateColumns="False" Margin="0,20,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Цена" Binding="{Binding Price}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код агента" Binding="{Binding Aggentid}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код клиента" Binding="{Binding Clientid}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код объекта" Binding="{Binding RealEstatled}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Потребности">
+                <Grid>
+                    <Menu Height="20" VerticalAlignment="Top">
+                        <MenuItem Header="Запись" x:Name="Demands">
+                            <MenuItem Header="Добавить" Click="MenuItem_Click_9"  ></MenuItem>
+                            <MenuItem Header="Редактировать" Click="MenuItem_Click_10"  ></MenuItem>
+                            <MenuItem Header="Удалить" Click="MenuItem_Click_11" ></MenuItem>
+                        </MenuItem>
+                    </Menu>
+                    <DataGrid x:Name="DemandsDG" AutoGenerateColumns="False" Margin="0,20,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Код" Binding="{Binding Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Минимальная цена" Binding="{Binding MinPrice}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Максимальная цена" Binding="{Binding MaxPrice}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код агента" Binding="{Binding Aggent_Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код клиента" Binding="{Binding Client_Id}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Тип объекта" Binding="{Binding Type_object}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Город" Binding="{Binding Address_City}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Улица" Binding="{Binding Address_Street}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Дом" Binding="{Binding Address_House}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Номер" Binding="{Binding Address_Number}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Клиенты П/П">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" x:Name="ClientsDG">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Имя}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Отчество}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код предложения" Binding="{Binding Код_предложения}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код потребности" Binding="{Binding Код_потребности}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Агенты П/П">
+                <Grid>
+                    <DataGrid AutoGenerateColumns="False" x:Name="AgentsDG">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Имя" Binding="{Binding Имя}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Фамилия" Binding="{Binding Фамилия}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Отчество" Binding="{Binding Отчество}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код предложения" Binding="{Binding Код_предложения}"></DataGridTextColumn>
+                            <DataGridTextColumn Header="Код потребности" Binding="{Binding Код_потребности}"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</Window>

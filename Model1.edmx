@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище AgencyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="agents">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DealShare" Type="int" />
+        </EntityType>
+        <EntityType Name="clients">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="demands">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_object" Type="int" />
+          <Property Name="Address_City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_House" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="MinPrice" Type="money" />
+          <Property Name="MaxPrice" Type="money" />
+          <Property Name="Aggent_Id" Type="int" />
+          <Property Name="Client_Id" Type="int" />
+          <Property Name="MinArea" Type="int" />
+          <Property Name="MaxArea" Type="int" />
+          <Property Name="MinRooms" Type="int" />
+          <Property Name="MaxRooms" Type="int" />
+          <Property Name="MinFloor" Type="int" />
+          <Property Name="MaxFloor" Type="int" />
+        </EntityType>
+        <EntityType Name="objects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_id" Type="int" Nullable="false" />
+          <Property Name="Address_City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_Street" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_Hose" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address_Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Coordinate_latitude" Type="int" />
+          <Property Name="Coordinate_longitude" Type="int" />
+          <Property Name="TotalFloors" Type="int" />
+          <Property Name="TotalArea" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Rooms" Type="int" />
+        </EntityType>
+        <EntityType Name="supplies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Aggentid" Type="int" Nullable="false" />
+          <Property Name="Clientid" Type="int" Nullable="false" />
+          <Property Name="RealEstatled" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="type_objects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Agency.dbo.AgentsAll" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="AgentsAll">
+          <Key>
+            <PropertyRef Name="Фамилия" />
+            <PropertyRef Name="Имя" />
+            <PropertyRef Name="Отчество" />
+            <PropertyRef Name="Код_предложения" />
+            <PropertyRef Name="Код_потребности" />
+          </Key>
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Код_предложения" Type="int" Nullable="false" />
+          <Property Name="Код_потребности" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Agency.dbo.ClientAll" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ClientAll">
+          <Key>
+            <PropertyRef Name="Код_потребности" />
+            <PropertyRef Name="Код_предложения" />
+          </Key>
+          <Property Name="Код_потребности" Type="int" Nullable="false" />
+          <Property Name="Код_предложения" Type="int" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="50" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="50" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_demands_agents">
+          <End Role="agents" Type="Self.agents" Multiplicity="0..1" />
+          <End Role="demands" Type="Self.demands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="agents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="demands">
+              <PropertyRef Name="Aggent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_demands_clients">
+          <End Role="clients" Type="Self.clients" Multiplicity="0..1" />
+          <End Role="demands" Type="Self.demands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="demands">
+              <PropertyRef Name="Client_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_demands_type_objects">
+          <End Role="type_objects" Type="Self.type_objects" Multiplicity="0..1" />
+          <End Role="demands" Type="Self.demands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_objects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="demands">
+              <PropertyRef Name="Type_object" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_objects_type_objects">
+          <End Role="type_objects" Type="Self.type_objects" Multiplicity="1" />
+          <End Role="objects" Type="Self.objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_objects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="objects">
+              <PropertyRef Name="Type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_agents">
+          <End Role="agents" Type="Self.agents" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="agents">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="Aggentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_clients">
+          <End Role="clients" Type="Self.clients" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clients">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="Clientid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_objects">
+          <End Role="objects" Type="Self.objects" Multiplicity="1" />
+          <End Role="supplies" Type="Self.supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="RealEstatled" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AddAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="family" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="comission" Type="int" Mode="In" />
+        </Function>
+        <Function Name="AddClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="family" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="telephone" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="AddDemands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="aggentid" Type="int" Mode="In" />
+          <Parameter Name="objecttype" Type="int" Mode="In" />
+          <Parameter Name="city" Type="nvarchar" Mode="In" />
+          <Parameter Name="street" Type="nvarchar" Mode="In" />
+          <Parameter Name="house" Type="nvarchar" Mode="In" />
+          <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="minprice" Type="money" Mode="In" />
+          <Parameter Name="maxprice" Type="money" Mode="In" />
+        </Function>
+        <Function Name="AddSupplies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="aggentid" Type="int" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="RealEstatled" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DelAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DelClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DelDemands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DelSupplies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RedacteAgent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="family" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="comission" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RedacteClient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="family" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="nvarchar" Mode="In" />
+          <Parameter Name="telephone" Type="nvarchar" Mode="In" />
+          <Parameter Name="email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="RedacteSupplies" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="price" Type="money" Mode="In" />
+          <Parameter Name="aggentid" Type="int" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="RealEstatled" Type="int" Mode="In" />
+        </Function>
+        <Function Name="RedDemands" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="clientid" Type="int" Mode="In" />
+          <Parameter Name="aggentid" Type="int" Mode="In" />
+          <Parameter Name="objecttype" Type="int" Mode="In" />
+          <Parameter Name="city" Type="nvarchar" Mode="In" />
+          <Parameter Name="street" Type="nvarchar" Mode="In" />
+          <Parameter Name="house" Type="nvarchar" Mode="In" />
+          <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="minprice" Type="money" Mode="In" />
+          <Parameter Name="maxprice" Type="money" Mode="In" />
+        </Function>
+        <EntityContainer Name="Хранилище AgencyModelContainer">
+          <EntitySet Name="agents" EntityType="Self.agents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clients" EntityType="Self.clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="demands" EntityType="Self.demands" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="objects" EntityType="Self.objects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="supplies" EntityType="Self.supplies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="type_objects" EntityType="Self.type_objects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AgentsAll" EntityType="Self.AgentsAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [AgentsAll].[Фамилия] AS [Фамилия], 
+    [AgentsAll].[Имя] AS [Имя], 
+    [AgentsAll].[Отчество] AS [Отчество], 
+    [AgentsAll].[Код_предложения] AS [Код_предложения], 
+    [AgentsAll].[Код_потребности] AS [Код_потребности]
+    FROM [dbo].[AgentsAll] AS [AgentsAll]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ClientAll" EntityType="Self.ClientAll" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ClientAll].[Код_потребности] AS [Код_потребности], 
+    [ClientAll].[Код_предложения] AS [Код_предложения], 
+    [ClientAll].[Имя] AS [Имя], 
+    [ClientAll].[Фамилия] AS [Фамилия], 
+    [ClientAll].[Отчество] AS [Отчество]
+    FROM [dbo].[ClientAll] AS [ClientAll]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_demands_agents" Association="Self.FK_demands_agents">
+            <End Role="agents" EntitySet="agents" />
+            <End Role="demands" EntitySet="demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_demands_clients" Association="Self.FK_demands_clients">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="demands" EntitySet="demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_demands_type_objects" Association="Self.FK_demands_type_objects">
+            <End Role="type_objects" EntitySet="type_objects" />
+            <End Role="demands" EntitySet="demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_objects_type_objects" Association="Self.FK_objects_type_objects">
+            <End Role="type_objects" EntitySet="type_objects" />
+            <End Role="objects" EntitySet="objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_agents" Association="Self.FK_supplies_agents">
+            <End Role="agents" EntitySet="agents" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_clients" Association="Self.FK_supplies_clients">
+            <End Role="clients" EntitySet="clients" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_objects" Association="Self.FK_supplies_objects">
+            <End Role="objects" EntitySet="objects" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AgencyModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="agent">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DealShare" Type="Int32" />
+          <NavigationProperty Name="demands" Relationship="AgencyModel.FK_demands_agents" FromRole="agent" ToRole="demands" />
+          <NavigationProperty Name="supplies" Relationship="AgencyModel.FK_supplies_agents" FromRole="agent" ToRole="supplies" />
+        </EntityType>
+        <EntityType Name="client">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="demands" Relationship="AgencyModel.FK_demands_clients" FromRole="client" ToRole="demands" />
+          <NavigationProperty Name="supplies" Relationship="AgencyModel.FK_supplies_clients" FromRole="client" ToRole="supplies" />
+        </EntityType>
+        <EntityContainer Name="AgencyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="agents" EntityType="Self.agent" />
+          <EntitySet Name="clients" EntityType="Self.client" />
+          <FunctionImport Name="AddAgent">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="family" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="comission" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddClient">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="family" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="telephone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DelAgent">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DelClient">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RedacteAgent">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="family" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="comission" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RedacteClient">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="family" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="telephone" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="demands" EntityType="AgencyModel.demands" />
+          <EntitySet Name="objects" EntityType="AgencyModel.objects" />
+          <EntitySet Name="supplies" EntityType="AgencyModel.supplies" />
+          <EntitySet Name="type_objects" EntityType="AgencyModel.type_objects" />
+          <AssociationSet Name="FK_demands_agents" Association="AgencyModel.FK_demands_agents">
+            <End Role="agent" EntitySet="agents" />
+            <End Role="demands" EntitySet="demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_agents" Association="AgencyModel.FK_supplies_agents">
+            <End Role="agent" EntitySet="agents" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_demands_clients" Association="AgencyModel.FK_demands_clients">
+            <End Role="client" EntitySet="clients" />
+            <End Role="demands" EntitySet="demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_clients" Association="AgencyModel.FK_supplies_clients">
+            <End Role="client" EntitySet="clients" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_demands_type_objects" Association="AgencyModel.FK_demands_type_objects">
+            <End Role="type_objects" EntitySet="type_objects" />
+            <End Role="demands" EntitySet="demands" />
+          </AssociationSet>
+          <AssociationSet Name="FK_objects_type_objects" Association="AgencyModel.FK_objects_type_objects">
+            <End Role="type_objects" EntitySet="type_objects" />
+            <End Role="objects" EntitySet="objects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_supplies_objects" Association="AgencyModel.FK_supplies_objects">
+            <End Role="objects" EntitySet="objects" />
+            <End Role="supplies" EntitySet="supplies" />
+          </AssociationSet>
+          <FunctionImport Name="AddSupplies">
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="aggentid" Mode="In" Type="Int32" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="RealEstatled" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="DelSupplies">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RedacteSupplies">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="price" Mode="In" Type="Decimal" />
+            <Parameter Name="aggentid" Mode="In" Type="Int32" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="RealEstatled" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AddDemands">
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="aggentid" Mode="In" Type="Int32" />
+            <Parameter Name="objecttype" Mode="In" Type="Int32" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="street" Mode="In" Type="String" />
+            <Parameter Name="house" Mode="In" Type="String" />
+            <Parameter Name="number" Mode="In" Type="String" />
+            <Parameter Name="minprice" Mode="In" Type="Decimal" />
+            <Parameter Name="maxprice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="DelDemands">
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="RedDemands">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="clientid" Mode="In" Type="Int32" />
+            <Parameter Name="aggentid" Mode="In" Type="Int32" />
+            <Parameter Name="objecttype" Mode="In" Type="Int32" />
+            <Parameter Name="city" Mode="In" Type="String" />
+            <Parameter Name="street" Mode="In" Type="String" />
+            <Parameter Name="house" Mode="In" Type="String" />
+            <Parameter Name="number" Mode="In" Type="String" />
+            <Parameter Name="minprice" Mode="In" Type="Decimal" />
+            <Parameter Name="maxprice" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <EntitySet Name="AgentsAll" EntityType="AgencyModel.AgentsAll" />
+          <EntitySet Name="ClientAll" EntityType="AgencyModel.ClientAll" />
+        </EntityContainer>
+        <EntityType Name="demands">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_object" Type="Int32" />
+          <Property Name="Address_City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address_Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address_House" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MinPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MaxPrice" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Aggent_Id" Type="Int32" />
+          <Property Name="Client_Id" Type="Int32" />
+          <Property Name="MinArea" Type="Int32" />
+          <Property Name="MaxArea" Type="Int32" />
+          <Property Name="MinRooms" Type="Int32" />
+          <Property Name="MaxRooms" Type="Int32" />
+          <Property Name="MinFloor" Type="Int32" />
+          <Property Name="MaxFloor" Type="Int32" />
+          <NavigationProperty Name="agents" Relationship="AgencyModel.FK_demands_agents" FromRole="demands" ToRole="agent" />
+          <NavigationProperty Name="clients" Relationship="AgencyModel.FK_demands_clients" FromRole="demands" ToRole="client" />
+          <NavigationProperty Name="type_objects" Relationship="AgencyModel.FK_demands_type_objects" FromRole="demands" ToRole="type_objects" />
+        </EntityType>
+        <EntityType Name="objects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_id" Type="Int32" Nullable="false" />
+          <Property Name="Address_City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address_Street" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address_Hose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Coordinate_latitude" Type="Int32" />
+          <Property Name="Coordinate_longitude" Type="Int32" />
+          <Property Name="TotalFloors" Type="Int32" />
+          <Property Name="TotalArea" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Rooms" Type="Int32" />
+          <NavigationProperty Name="type_objects" Relationship="AgencyModel.FK_objects_type_objects" FromRole="objects" ToRole="type_objects" />
+          <NavigationProperty Name="supplies" Relationship="AgencyModel.FK_supplies_objects" FromRole="objects" ToRole="supplies" />
+        </EntityType>
+        <EntityType Name="supplies">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="Aggentid" Type="Int32" Nullable="false" />
+          <Property Name="Clientid" Type="Int32" Nullable="false" />
+          <Property Name="RealEstatled" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="agents" Relationship="AgencyModel.FK_supplies_agents" FromRole="supplies" ToRole="agent" />
+          <NavigationProperty Name="clients" Relationship="AgencyModel.FK_supplies_clients" FromRole="supplies" ToRole="client" />
+          <NavigationProperty Name="objects" Relationship="AgencyModel.FK_supplies_objects" FromRole="supplies" ToRole="objects" />
+        </EntityType>
+        <EntityType Name="type_objects">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="demands" Relationship="AgencyModel.FK_demands_type_objects" FromRole="type_objects" ToRole="demands" />
+          <NavigationProperty Name="objects" Relationship="AgencyModel.FK_objects_type_objects" FromRole="type_objects" ToRole="objects" />
+        </EntityType>
+        <Association Name="FK_demands_agents">
+          <End Type="AgencyModel.agent" Role="agent" Multiplicity="0..1" />
+          <End Type="AgencyModel.demands" Role="demands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="demands">
+              <PropertyRef Name="Aggent_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_agents">
+          <End Type="AgencyModel.agent" Role="agent" Multiplicity="1" />
+          <End Type="AgencyModel.supplies" Role="supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="agent">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="Aggentid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_demands_clients">
+          <End Type="AgencyModel.client" Role="client" Multiplicity="0..1" />
+          <End Type="AgencyModel.demands" Role="demands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="demands">
+              <PropertyRef Name="Client_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_clients">
+          <End Type="AgencyModel.client" Role="client" Multiplicity="1" />
+          <End Type="AgencyModel.supplies" Role="supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="client">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="Clientid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_demands_type_objects">
+          <End Type="AgencyModel.type_objects" Role="type_objects" Multiplicity="0..1" />
+          <End Type="AgencyModel.demands" Role="demands" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_objects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="demands">
+              <PropertyRef Name="Type_object" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_objects_type_objects">
+          <End Type="AgencyModel.type_objects" Role="type_objects" Multiplicity="1" />
+          <End Type="AgencyModel.objects" Role="objects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="type_objects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="objects">
+              <PropertyRef Name="Type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_supplies_objects">
+          <End Type="AgencyModel.objects" Role="objects" Multiplicity="1" />
+          <End Type="AgencyModel.supplies" Role="supplies" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="objects">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="supplies">
+              <PropertyRef Name="RealEstatled" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AgentsAll">
+          <Key>
+            <PropertyRef Name="Фамилия" />
+            <PropertyRef Name="Имя" />
+            <PropertyRef Name="Отчество" />
+            <PropertyRef Name="Код_предложения" />
+            <PropertyRef Name="Код_потребности" />
+          </Key>
+          <Property Name="Фамилия" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Имя" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Код_предложения" Type="Int32" Nullable="false" />
+          <Property Name="Код_потребности" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClientAll">
+          <Key>
+            <PropertyRef Name="Код_потребности" />
+            <PropertyRef Name="Код_предложения" />
+          </Key>
+          <Property Name="Код_потребности" Type="Int32" Nullable="false" />
+          <Property Name="Код_предложения" Type="Int32" Nullable="false" />
+          <Property Name="Имя" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Фамилия" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Отчество" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище AgencyModelContainer" CdmEntityContainer="AgencyEntities">
+          <EntitySetMapping Name="agents">
+            <EntityTypeMapping TypeName="AgencyModel.agent">
+              <MappingFragment StoreEntitySet="agents">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="DealShare" ColumnName="DealShare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clients">
+            <EntityTypeMapping TypeName="AgencyModel.client">
+              <MappingFragment StoreEntitySet="clients">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddAgent" FunctionName="Хранилище AgencyModel.AddAgent" />
+          <FunctionImportMapping FunctionImportName="AddClient" FunctionName="Хранилище AgencyModel.AddClient" />
+          <FunctionImportMapping FunctionImportName="DelAgent" FunctionName="Хранилище AgencyModel.DelAgent" />
+          <FunctionImportMapping FunctionImportName="DelClient" FunctionName="Хранилище AgencyModel.DelClient" />
+          <FunctionImportMapping FunctionImportName="RedacteAgent" FunctionName="Хранилище AgencyModel.RedacteAgent" />
+          <FunctionImportMapping FunctionImportName="RedacteClient" FunctionName="Хранилище AgencyModel.RedacteClient" />
+          <EntitySetMapping Name="demands">
+            <EntityTypeMapping TypeName="AgencyModel.demands">
+              <MappingFragment StoreEntitySet="demands">
+                <ScalarProperty Name="MaxFloor" ColumnName="MaxFloor" />
+                <ScalarProperty Name="MinFloor" ColumnName="MinFloor" />
+                <ScalarProperty Name="MaxRooms" ColumnName="MaxRooms" />
+                <ScalarProperty Name="MinRooms" ColumnName="MinRooms" />
+                <ScalarProperty Name="MaxArea" ColumnName="MaxArea" />
+                <ScalarProperty Name="MinArea" ColumnName="MinArea" />
+                <ScalarProperty Name="Client_Id" ColumnName="Client_Id" />
+                <ScalarProperty Name="Aggent_Id" ColumnName="Aggent_Id" />
+                <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+                <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+                <ScalarProperty Name="Address_Number" ColumnName="Address_Number" />
+                <ScalarProperty Name="Address_House" ColumnName="Address_House" />
+                <ScalarProperty Name="Address_Street" ColumnName="Address_Street" />
+                <ScalarProperty Name="Address_City" ColumnName="Address_City" />
+                <ScalarProperty Name="Type_object" ColumnName="Type_object" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="objects">
+            <EntityTypeMapping TypeName="AgencyModel.objects">
+              <MappingFragment StoreEntitySet="objects">
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="TotalArea" ColumnName="TotalArea" />
+                <ScalarProperty Name="TotalFloors" ColumnName="TotalFloors" />
+                <ScalarProperty Name="Coordinate_longitude" ColumnName="Coordinate_longitude" />
+                <ScalarProperty Name="Coordinate_latitude" ColumnName="Coordinate_latitude" />
+                <ScalarProperty Name="Address_Number" ColumnName="Address_Number" />
+                <ScalarProperty Name="Address_Hose" ColumnName="Address_Hose" />
+                <ScalarProperty Name="Address_Street" ColumnName="Address_Street" />
+                <ScalarProperty Name="Address_City" ColumnName="Address_City" />
+                <ScalarProperty Name="Type_id" ColumnName="Type_id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="supplies">
+            <EntityTypeMapping TypeName="AgencyModel.supplies">
+              <MappingFragment StoreEntitySet="supplies">
+                <ScalarProperty Name="RealEstatled" ColumnName="RealEstatled" />
+                <ScalarProperty Name="Clientid" ColumnName="Clientid" />
+                <ScalarProperty Name="Aggentid" ColumnName="Aggentid" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="type_objects">
+            <EntityTypeMapping TypeName="AgencyModel.type_objects">
+              <MappingFragment StoreEntitySet="type_objects">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="AddSupplies" FunctionName="Хранилище AgencyModel.AddSupplies" />
+          <FunctionImportMapping FunctionImportName="DelSupplies" FunctionName="Хранилище AgencyModel.DelSupplies" />
+          <FunctionImportMapping FunctionImportName="RedacteSupplies" FunctionName="Хранилище AgencyModel.RedacteSupplies" />
+          <FunctionImportMapping FunctionImportName="AddDemands" FunctionName="Хранилище AgencyModel.AddDemands" />
+          <FunctionImportMapping FunctionImportName="DelDemands" FunctionName="Хранилище AgencyModel.DelDemands" />
+          <FunctionImportMapping FunctionImportName="RedDemands" FunctionName="Хранилище AgencyModel.RedDemands" />
+          <EntitySetMapping Name="AgentsAll">
+            <EntityTypeMapping TypeName="AgencyModel.AgentsAll">
+              <MappingFragment StoreEntitySet="AgentsAll">
+                <ScalarProperty Name="Код_потребности" ColumnName="Код_потребности" />
+                <ScalarProperty Name="Код_предложения" ColumnName="Код_предложения" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClientAll">
+            <EntityTypeMapping TypeName="AgencyModel.ClientAll">
+              <MappingFragment StoreEntitySet="ClientAll">
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Код_предложения" ColumnName="Код_предложения" />
+                <ScalarProperty Name="Код_потребности" ColumnName="Код_потребности" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

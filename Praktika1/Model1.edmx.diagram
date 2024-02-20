@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e4eed563b1fc4dd4b263146f197736d4" Name="Diagram1">
+        <EntityTypeShape EntityType="AgentyModel.agent" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.client" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.demand" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.object" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.supply" Width="1.5" PointX="5.25" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.type_objects" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.AgentsAll" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AgentyModel.ClientAll" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="AgentyModel.FK_demands_agents" ManuallyRouted="false" />
+        <AssociationConnector Association="AgentyModel.FK_supplies_agents" ManuallyRouted="false" />
+        <AssociationConnector Association="AgentyModel.FK_demands_clients" ManuallyRouted="false" />
+        <AssociationConnector Association="AgentyModel.FK_supplies_clients" ManuallyRouted="false" />
+        <AssociationConnector Association="AgentyModel.FK_demands_type_objects" ManuallyRouted="false" />
+        <AssociationConnector Association="AgentyModel.FK_objects_type_objects" ManuallyRouted="false" />
+        <AssociationConnector Association="AgentyModel.FK_supplies_objects" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

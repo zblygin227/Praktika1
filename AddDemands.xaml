@@ -1,0 +1,32 @@
+﻿<Window x:Class="Praktika1.AddDemands"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Praktika1"
+        mc:Ignorable="d"
+        Title="AddDemands" Height="450" Width="370" Loaded="Window_Loaded">
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" x:Name="AggentIdCB" Margin="25,44,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="ClientIdCB" Margin="195,44,0,0" VerticalAlignment="Top" Width="120"/>
+        <ComboBox HorizontalAlignment="Left" x:Name="ObjectCB" Margin="25,103,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Код Агента" HorizontalAlignment="Left" Margin="50,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="Код Клиента" HorizontalAlignment="Left" Margin="216,18,0,0" VerticalAlignment="Top"/>
+        <Label Content="Тип объекта" HorizontalAlignment="Left" Margin="46,77,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="CityTB" HorizontalAlignment="Left" Margin="195,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBox x:Name="StreetTB" HorizontalAlignment="Left" Margin="25,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBox x:Name="HouseTB" HorizontalAlignment="Left" Margin="195,156,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <TextBox x:Name="NumberTB" HorizontalAlignment="Left" Margin="25,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="22"/>
+        <TextBox x:Name="MinPriceTB" HorizontalAlignment="Left" Margin="195,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Height="22"/>
+        <Label Content="Город" HorizontalAlignment="Left" Margin="233,77,0,0" VerticalAlignment="Top"/>
+        <Label Content="Улица" HorizontalAlignment="Left" Margin="63,130,0,0" VerticalAlignment="Top"/>
+        <Label Content="Дом" HorizontalAlignment="Left" Margin="238,130,0,0" VerticalAlignment="Top"/>
+        <Label Content="Номер" HorizontalAlignment="Left" Margin="62,180,0,0" VerticalAlignment="Top"/>
+        <Label Content="Минимальная цена" HorizontalAlignment="Left" Margin="198,178,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="MaxPriceTB" HorizontalAlignment="Left" Margin="26,259,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="22"/>
+        <Label Content="Максимальная цена" HorizontalAlignment="Left" Margin="24,233,0,0" VerticalAlignment="Top"/>
+        <Button Content="Добавить" Click="Button_Click_1" HorizontalAlignment="Left" Margin="56,338,0,0" VerticalAlignment="Top"/>
+        <Button Content="Отмена" Click="Button_Click" HorizontalAlignment="Left" Margin="238,338,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>
